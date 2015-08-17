@@ -4,6 +4,8 @@ require 'pry'
 
 class EtsyScraper
 
+	BASE_URL = "https://openapi.etsy.com/v2/listings/active?api_key=bzamv4eqboevoepjmw7vza6g"
+
 	attr_accessor
 	attr_reader :username
 
