@@ -15,6 +15,14 @@ class EtsyScraper
 
 # Class Methods
 
+	def get_url
+		
+	end
+
+	def get_json(url)
+    	JSON.load(open(url))
+  	end
+
 	def get_most_used_material(desription_hash)
   		
   	end
