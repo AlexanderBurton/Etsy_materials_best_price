@@ -11,7 +11,7 @@ class Materials
 		@url = "https://openapi.etsy.com/v2/shops/#{shop_id}/listings/active?api_key=bzamv4eqboevoepjmw7vza6g"
 	end
 
-	def listing_hash
+	def listings
 		begin
 		JSON.load(open(@url))
 	    rescue
@@ -25,17 +25,10 @@ class Materials
 		puts "Sorry, invalid shop ID. Please retry."
 	end
 
-	def listings
-		@listing_hash
-	end
-
 	def most_used
 		@materials = {}
 		@most_used = []
-		if listing_hash.nil?
-			return invalid
-		end
-		listing_hash["results"].each do |listing|
+		listings["results"].each do |listing|
 			listing["materials"].each do |material|
 				if @materials[material].nil?
 					@materials[material] = 1
