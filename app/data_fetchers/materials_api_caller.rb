@@ -29,10 +29,13 @@ class Materials
 		@listing_hash
 	end
 
-	def materials
+	def most_used
 		@materials = {}
 		@most_used = []
-		@listing_hash["results"].each do |listing|
+		if listing_hash.nil?
+			return invalid
+		end
+		listing_hash["results"].each do |listing|
 			listing["materials"].each do |material|
 				if @materials[material].nil?
 					@materials[material] = 1

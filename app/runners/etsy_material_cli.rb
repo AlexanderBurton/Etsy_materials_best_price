@@ -30,24 +30,13 @@ class EtsyMaterialCLI
 	end
 
 	def materials
-		runner
+		puts "What is your shop ID?"
+		shop_id = gets.chomp.downcase
+		@shop_materials = Materials.new(shop_id).most_used
 	end
 
 	def exit
 		puts "Goodbye!"
-	end
-
-
-	def get_shop_id
-		puts "What is your shop ID?"
-		shop_id = gets.chomp
-		shop_id.downcase
-	end
-
-	def runner 
-		shop_id = get_shop_id
-		Materials.new(shop_id).listings
-		binding.pry
 	end
 
 end
