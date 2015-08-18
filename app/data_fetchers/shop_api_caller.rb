@@ -2,9 +2,9 @@ require 'json'
 require 'open-uri'
 require 'pry'
 
-class EtsyScraper
+class EtsyShopInfo
 
-	BASE_URL = "https://openapi.etsy.com/v2/listings/active?api_key=bzamv4eqboevoepjmw7vza6g"
+	BASE_SHOPS_URL = "https://openapi.etsy.com/v2/listings/active?api_key=bzamv4eqboevoepjmw7vza6g"
 
 	attr_accessor
 	attr_reader :username
@@ -15,8 +15,8 @@ class EtsyScraper
 
 # Class Methods
 
-	def get_url
-		
+	def get_shop_url
+		BASE_SHOPS_URL+username
 	end
 
 	def get_json(url)
