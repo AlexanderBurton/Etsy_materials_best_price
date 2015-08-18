@@ -4,26 +4,23 @@ require 'pry'
 
 class EtsyShopInfo
 
-	BASE_SHOPS_URL = "https://openapi.etsy.com/v2/listings/active?api_key=bzamv4eqboevoepjmw7vza6g"
-
 	attr_accessor
 	attr_reader :username
 
-	def initialize(username)
-		@username = username
+	def initialize(shop_id)
+		@shop_id = shop_id
+		@url = "https://openapi.etsy.com/v2/shops/#{shop_id}/listings/active?api_key=bzamv4eqboevoepjmw7vza6g"
+		@listing_hash = JSON.load(open(@url))
 	end
 
-# Class Methods
+	# Class methods
 
-	def get_shop_url
-		BASE_SHOPS_URL+username
+	def listings
+		puts @listing_hash
 	end
-
-	def get_json(url)
-    	JSON.load(open(url))
-  	end
 
 	def get_most_used_material(desription_hash)
+		
   		
   	end
 
