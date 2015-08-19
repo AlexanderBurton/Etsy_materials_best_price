@@ -21,13 +21,7 @@ class Prices
   	get_prices
   	@offerings = @top_five
   end
-  
-  # File.write('temp',prices_url)
 
-
-  # # readPrices = File.read('temp')
-  # alibaba = Nokogiri::HTML(prices_url)
-  # binding.pry
   def get_prices
   		get_data
 	    @top_five = []
@@ -48,16 +42,16 @@ class Prices
 		    if offering.css("div.attr").text.include? "FOB"
 
 			        title = offering.css("h2").text.gsub(/\s{2,}/, "")
-			        offer = {}
-			        @offers[title] = title
+			        @offer = {}
+			        @offer[:title] = title
 
 					offering.css('div.attr').each do |attribute|
 					    if attribute.text.include? "FOB"
 					  		price_attr = attribute.text.gsub(/\s{2,}/, "")
-					  		@offers[:price] = price_attr
+					  		@offer[:price] = price_attr
 					  	elsif attribute.text.include? "Order"
 					  		order_attr = attribute.text.gsub(/\s{2,}/, "")
-					  		@offers[:quantity] = order_attr
+					  		@offer[:quantity] = order_attr
 					  	end
 					end
 					
@@ -72,34 +66,16 @@ class Prices
 						string.gsub!(/,/, ", ")
 					end
 				end
-				@offers[:Quick_Details] = details
+				@offer[:Quick_Details] = details
 
 			end
+			@offers << @offer
 		end
 		ap @offers
 	end
-
-# \s{2,}
 
 end
 
 prices = Prices.new("hemp")
 binding.pry
 
-
-
-  	# binding.pry
-  	# only collect offerings  that offering.div.attr
-  	# div.attr
-  	# if offering.text.include? "FOB"
-  	# 	puts offering.text
-  	# end
-  	# puts offering.at_xpath("*")["data-pid"]
-
-  	# binding.pry
-    
-  	
-  	# if offering.css("div.attr").text.include? "FOB"
-  	# puts offering.css("h2").text 
-  	# attributes = offering.css("div.attr").text.gsub(/\s{2,}/, "")
-   #  end
