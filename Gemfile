@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem "nokogiri"
+gem "ruby-progressbar"
 
 group "development" do
   gem "pry"
