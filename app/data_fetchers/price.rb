@@ -2,9 +2,8 @@ require 'json'
 require 'open-uri'
 require 'pry'
 require 'nokogiri'
-require "awesome_print"
 
-class Prices
+class Price
 
 
   def initialize(material)
@@ -19,31 +18,31 @@ class Prices
 
   def offerings
   	get_prices
-  	@offerings = @top_five
+  	@offerings = @top_three
   end
+
 
   def get_prices
   		get_data
-	    @top_five = []
+	    @top_three = []
 	    counter = 0
 
-	    until @top_five.count == 5
-	  		offering = @alibaba.css('div[data-ctrdot] .content')[counter] 	
+	    until @top_three.count == 3
+	  		offering = @alibaba.css('div[data-ctrdot]')[counter] 
 		   	if offering.css("div.attr").text.include? "FOB"
-		   		@top_five << offering
+		   		@top_three << offering
 		   	end
-		   		# binding.pry
 		   	counter += 1
 		end
 
 
 		@offers = []
-		@top_five.each do |offering|
+		@top_three.each do |offering|
+			# binding.pry
 		    if offering.css("div.attr").text.include? "FOB"
-
-			        title = offering.css("h2").text.gsub(/\s{2,}/, "")
-			        @offer = {}
-			        @offer[:title] = title
+		        title = offering.css("h2").text.gsub(/\s{2,}/, "")
+		        @offer = {}
+		        @offer[:title] = title
 
 					offering.css('div.attr').each do |attribute|
 					    if attribute.text.include? "FOB"
@@ -54,8 +53,15 @@ class Prices
 					  		@offer[:quantity] = order_attr
 					  	end
 					end
+# binding.pry
+				if offering.css("div.image img").attribute("src")!= nil
+				@offer[:image] = offering.css("img").attribute("src").text
+			    else
+			    	@offer[:image] = offering.css("img").attribute("image-src").text
+			    end
+				@offer[:id] = offering.css("a").attribute("data-hislog").text
 					
-
+					
 				details = offering.css(".kv-prop").text.delete("\r").gsub("\t", "").split("\n")
 				details.shift
 				details.each do |string|
@@ -66,16 +72,14 @@ class Prices
 						string.gsub!(/,/, ", ")
 					end
 				end
-				@offer[:Quick_Details] = details
+				@offer[:quick_details] = details
 
 			end
 			@offers << @offer
+
 		end
-		ap @offers
+	    @offers
 	end
 
 end
-
-prices = Prices.new("hemp")
-binding.pry
 

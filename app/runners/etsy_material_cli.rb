@@ -51,8 +51,8 @@ class EtsyMaterialCLI
 	def materials
 		puts ""
 		puts "What is your shop ID?"
-		shop_id = gets.chomp.downcase
-		@shop_materials = Materials.new(shop_id)
+		@shop_id = gets.chomp.downcase
+		@shop_materials = Materials.new(@shop_id)
 		@most_used = shop_materials.most_used
 		if shop_materials.listings.nil?
 			return invalid
@@ -79,7 +79,8 @@ class EtsyMaterialCLI
 	end
 
 	def find_price
-		@material_price = Prices.new(most_used)
+		@gen_html = GenerateHTML.new(most_used, @shop_id)
+		@gen_html.get_data
 	end
 
 	def exit
