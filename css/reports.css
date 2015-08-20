@@ -1,7 +1,209 @@
-h2 {
-	color: blue;
+/**BODY**/
+
+
+.shop_name, .as_of_date {
+	width:25%;
+	text-align: center;
+	padding:5px;
+}
+
+.suso {
+	    text-shadow: 3px 6px 6px #aaa;
+}
+
+.shop_name {
+	/*background: #f2ea00;*/
+}
+
+.mat_used {
+	background: #7194E8;
+	color: white;
+}
+
+.as_of_date {
+	/*background: #9092f0 ;*/
+}
+
+.report_stats {
+	    border-bottom: 2px solid pink;
+    margin-bottom: 80px;
+}
+
+.mat_used {
+	width: 50%;
+	padding:5px;
+	text-align: center;
+}
+
+.report_stats strong{
+	font-weight:700
+}
+
+
+
+h1 {
+  margin: 0 0 60px 0;
+  padding: 15px;
+  color: white;
+  text-align: center;
+  background: pink
+}
+
+
+
+.page_title {
+  background: white;
+  margin-top: 0;
+  padding: 160px 0;
+  border-bottom: 2px solid pink;
+  background: url(http://subtlepatterns.com/patterns/geometry2.png);
+}
+
+.subtitle {
+	font-family: 'Reenie Beanie', cursive;
+	    font-size: 23px;
+
+}
+
+.suso {
+  font-family: 'Quicksand';
+  font-size: 150px;
+  margin: 0
+}
+
+html {
+  padding: 0;
+  margin: 0;
+  font-family: 'Quicksand';
+}
+
+ 
+ul.colorbar {
+  list-style:none;
+  width:100%;
+  font-size:0;
+  margin-left:-10px;
+  padding: 0
+}
+
+.colorbar li {
+  display:inline-block;
+  width:10%;
+  height:8px;
+}
+
+.colorbar li:nth-child(1) {
+  background:#f2ea00;
+}
+
+.colorbar li:nth-child(2) {
+  background:#ebce13;
+}
+
+.colorbar li:nth-child(3) {
+  background:#f0aa14;
+}
+
+.colorbar li:nth-child(4) {
+  background:#f08630;
+}
+
+.colorbar li:nth-child(5) {
+  background:#f07a60;
+}
+
+.colorbar li:nth-child(6) {
+  background:#ee78f0;
+}
+
+.colorbar li:nth-child(7) {
+  background:#bd90f0;
+}
+
+.colorbar li:nth-child(8) {
+  background:#9092f0;
+}
+
+.colorbar li:nth-child(9) {
+  background:#7fbadc;
+}
+
+.colorbar li:nth-child(10) {
+  background:#90f0e3;
+}
+
+
+/*html {
+    border-image: -webkit-linear-gradient(left, #E74C3C, #E67E22 16%, #F1C40F 33%, #2ECC71 50%, #368DDA 66%, #9B59B6) 1%;
+  border-width: 10px 0 0 0;
+  width: 100%;
+}*/
+
+body {
+  margin: 0;
+  background: url(http://subtlepatterns.com/patterns/subtle_dots.png);;
 }
 
 .flex-container {
-	
+	display:flex;
+	flex-direction: row;
+}
+
+.flex-item {
+	width:31%;
+  margin:1%;
+  background: white;
+  border-radius: 8px;
+}
+
+a {
+  text-decoration: none
+}
+
+h2, #price_qty , #quick_details {
+	font-size: 20px;
+  color: #868686
+}
+
+a {
+  color: black
+}
+
+#price, 
+#quantity,
+#price_qty, 
+#quick_details,
+.flex-item h2 {
+	text-align: center;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.flex-item img {
+	width: auto;
+	margin: 0 auto;
+}
+
+.flex-item h2 {
+	text-transform: capitalize;
+}
+
+.flex-item ul {
+	width: 70%;
+	margin: 0 auto;
+}
+
+a.flex-item {
+	border: 2px solid #ccc;
+    padding: 0 0 20px 0;
+  margin-bottom: 60px;
+  transition: .5s ease;
+}
+
+a.flex-item:hover {
+  transform: scale(1.02);
+  transition: .3s ease;
+}
+
+hr {
+	border-color: #eee
 }

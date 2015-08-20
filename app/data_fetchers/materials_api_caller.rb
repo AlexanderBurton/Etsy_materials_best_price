@@ -1,7 +1,7 @@
 require 'json'
 require 'open-uri'
 require 'pry'
-require 'ruby-progressbar'
+# require 'ruby-progressbar'
 
 class Materials	
 	attr_accessor
@@ -33,8 +33,10 @@ class Materials
 	def most_used
 		@materials = {}
 		@most_used = []
-		progress = listings["results"].length
-		@progress_bar = ProgressBar.create(:total => @progress)
+		# progress = listings["results"].length
+		# @progress_bar = ProgressBar.create(:total => @progress)
+		puts ""
+		puts "One moment while we scan your listings..."
 		listings["results"].each do |listing|
 			listing["materials"].each do |material|
 				if @materials[material].nil?
@@ -43,7 +45,7 @@ class Materials
 					@materials[material] += 1
 				end
 			end
-			@progress_bar.increment
+			# @progress_bar.increment
 	    end
 	    if @materials.empty?
 	    	return no_materials
@@ -53,7 +55,7 @@ class Materials
 	    end
 	    @materials.sort! {|a,b| b[1] <=> a[1] }
 	    @materials[0..2].each do |material|
-	    	@most_used << material[0]
+	    	@most_used << material
 	    end
 	    @most_used
 	end
@@ -61,9 +63,9 @@ class Materials
 	def print_most_used
 		puts ""
 		puts "Hello #{@shop_id.capitalize}, your 3 most used materials are:"
-		puts "1. #{@most_used[0].capitalize}"
-		puts "2. #{@most_used[1].capitalize}"
-		puts "3. #{@most_used[2].capitalize}" 
+		puts "1. #{@most_used[0][0].capitalize}"
+		puts "2. #{@most_used[1][0].capitalize}"
+		puts "3. #{@most_used[2][0].capitalize}" 
 	    puts ""
 	end
 end

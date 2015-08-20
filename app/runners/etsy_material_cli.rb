@@ -15,7 +15,7 @@ class EtsyMaterialCLI
 		@input = gets.chomp.downcase
 		if input == "help"
 			help
-		elsif input == "materials"
+		elsif input == "materials" || input == "m"
 			materials
 		elsif input == "exit"
 			exit

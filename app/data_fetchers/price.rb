@@ -60,7 +60,7 @@ class Price
 			    	@offer[:image] = offering.css("img").attribute("image-src").text
 			    end
 				@offer[:id] = offering.css("a").attribute("data-hislog").text
-					
+				@offer[:url] = offering.css(".title a").attribute("href").value
 					
 				details = offering.css(".kv-prop").text.delete("\r").gsub("\t", "").split("\n")
 				details.shift
