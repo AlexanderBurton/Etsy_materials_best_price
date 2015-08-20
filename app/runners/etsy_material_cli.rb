@@ -2,7 +2,7 @@ require "pry"
 
 class EtsyMaterialCLI
 
-	attr_accessor :input,:shop_materials, :most_used
+	attr_accessor :input,:shop_id,:shop_materials,:most_used,:gen_html
 	
 	def initialize
 		puts ""
@@ -15,7 +15,7 @@ class EtsyMaterialCLI
 		@input = gets.chomp.downcase
 		if input == "help"
 			help
-		elsif input == "materials" || input == "m"
+		elsif input == "materials"
 			materials
 		elsif input == "exit"
 			exit
@@ -28,7 +28,7 @@ class EtsyMaterialCLI
 
 	def new_command
 		puts ""
-		puts "Type and new command:"
+		puts "Type and new command.  To see a list of commands, type help."
 		get_command
 	end
 
@@ -42,20 +42,25 @@ class EtsyMaterialCLI
 		get_command
 	end
 
-	def invalid 
+	def invalid_shop 
 		puts ""
 		puts "Sorry, invalid shop ID. Please retry."
 		materials
+	end
+
+	def invalid_command
+		puts
+		puts "Invalid command.  Please type yes or no."
 	end
 
 	def materials
 		puts ""
 		puts "What is your shop ID?"
 		@shop_id = gets.chomp.downcase
-		@shop_materials = Materials.new(@shop_id)
+		@shop_materials = Materials.new(shop_id)
 		@most_used = shop_materials.most_used
 		if shop_materials.listings.nil?
-			return invalid
+			return invalid_shop
 		elsif most_used.nil?
 			new_command
 		else
@@ -68,19 +73,31 @@ class EtsyMaterialCLI
 		puts "Would you like a list of the lowest prices on Alibaba?"
 		@input = gets.chomp.downcase
 		if input == "yes" || input == "y"
-			find_price
+			generate_html
 		elsif input == "no" || input == "n"
-			return new_command
+			exit_program?
 		else
-			puts ""
-			puts "Invalid command.  Please type yes or no."
+			invalid_command
 			search_alibaba?
 		end
 	end
 
-	def find_price
-		@gen_html = GenerateHTML.new(most_used, @shop_id)
+	def generate_html
+		@gen_html = GenerateHTML.new(most_used,@shop_id)
 		@gen_html.get_data
+	end
+
+	def exit_program?
+		puts
+		puts "Would you like to exit the program?"
+		@input = gets.chomp.downcase
+		if input == "yes" || input == "y"
+			exit
+		elsif input == "no" || input == "n"
+			new_command	
+		else
+			invalid_command
+		end
 	end
 
 	def exit
