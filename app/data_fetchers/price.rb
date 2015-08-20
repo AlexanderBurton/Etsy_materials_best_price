@@ -26,7 +26,8 @@ class Price
   		get_data
 	    @top_three = []
 	    counter = 0
-
+	    counter2 = 0
+	    
 	    until @top_three.count == 3
 	  		offering = @alibaba.css('div[data-ctrdot]')[counter] 
 		   	if offering.css("div.attr").text.include? "FOB"

@@ -6,7 +6,12 @@ class EtsyMaterialCLI
 	
 	def initialize
 		puts ""
-		puts "Welcome to the Etsy material sourcer!"
+		puts "Welcome to SuSo!"
+		puts "We are an etsy supply sourcer that can tell you"
+		puts "your most used crafting materials, and get you"
+		puts "price offers from Alibaba.com."
+		puts
+		puts "To get started, type materials."
 		puts "To see a list of commands, type help."
 		get_command					
 	end
@@ -15,7 +20,7 @@ class EtsyMaterialCLI
 		@input = gets.chomp.downcase
 		if input == "help"
 			help
-		elsif input == "materials"
+		elsif input == "materials" || input == "m"
 			materials
 		elsif input == "exit"
 			exit
@@ -73,6 +78,8 @@ class EtsyMaterialCLI
 		puts "Would you like a list of the lowest prices on Alibaba?"
 		@input = gets.chomp.downcase
 		if input == "yes" || input == "y"
+			puts
+	    	puts "One moment while we retrieve the materials from Alibaba."
 			generate_html
 		elsif input == "no" || input == "n"
 			exit_program?
